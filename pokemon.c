@@ -40,6 +40,7 @@ void criare();
 void criart();
 void del();
 void iniciar();
+void ler();
 
 CARD *lista=NULL, *temp=NULL;
 ENERGY *listae=NULL, *tempe=NULL;
@@ -54,7 +55,7 @@ void main(){
 
 void iniciar(){
 
-	int i=0, j=0, a;
+	int i=0;
 
 
 	for(i=0;i<151;i++)
@@ -70,14 +71,23 @@ void iniciar(){
 	tempe=listae;
 	tempt=listat;
 
-	for(i=0;i<151;i++)
-		criar();
+	for(i=1;i<=151;i++){
+		
+		ler(temp, i);
+		temp=temp->prox;	
+	}
 
-	for(i=0;i<m;i++)
-		criare();
+	for(i=0;i<m;i++){
+		
+		lere(tempe, i);
+		tempe=tempe->prox;
+	}
 
-	for(i=0;i<m;i++)
-		criart();
+	for(i=0;i<m;i++){
+		
+		lert(tempt, i);
+		tempt=tempt->prox;
+	}
 	
 }
 
@@ -180,26 +190,49 @@ void del(){
     	}
 }
 
-void criare(){
+void ler(CARD *temp, int i){
 
-	switch(tempe->num){
+	int j=1;
 
-		case 1:
+	FILE *arquivo;
+	arquivo=fopen("pokemons.txt", "r");
 
-
-			break;
+	fseek(arquivo, SEEK_SET, 0);
+	
+	while(i!=j){
+		
+		fscanf(arquivo, "%[^\n]s", temp->nome);
+		j++;
 	}
+		
+	fscanf(arquivo, "%[^;]s", temp->nome);
+	fscanf(arquivo, "%[^;]s", temp->tipo);
+	fscanf(arquivo, "%[^;]s", temp->weak);
+	fscanf(arquivo, "%[^;]s", temp->resis);
+	fscanf(arquivo, "%[^;]d", temp->num);
+	fscanf(arquivo, "%[^;]d", temp->hp);
+	fscanf(arquivo, "%[^;]d", temp->cost);
+	fscanf(arquivo, "%[^;]d", temp->atk1);
+	fscanf(arquivo, "%[^;]d", temp->atk2);
+	fscanf(arquivo, "%[^;]d", temp->dmg1);
+	fscanf(arquivo, "%[^;]d", temp->dmg2);
+	fscanf(arquivo, "%[^;]d", temp->effect1);
+	fscanf(arquivo, "%[^;]d", temp->effect2);
+	fscanf(arquivo, "%[^;]d", temp->evolucao[0]);
+	fscanf(arquivo, "%[^;]d", temp->evolucao[1]);
+	fscanf(arquivo, "%[^;]d", temp->power);
+
+	fclose(arquivo);
 }
 
-void criart(){
+void lere(){
 
-	switch(tempt->num){
+	
+}
 
-		case 1:
+void lert(){
 
-
-			break;
-	}
+	
 }
 
 void criar(){
