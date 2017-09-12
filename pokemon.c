@@ -26,7 +26,6 @@ typedef struct trainer{
 
 	int num;
 	char nome[20];
-	int effect;
 
 	struct trainer *proxt;
 
@@ -225,14 +224,42 @@ void ler(CARD *temp, int i){
 	fclose(arquivo);
 }
 
-void lere(){
+void lere(ENERGY *temp, int i){
 
+	int j=1;
+
+	FILE *arquivo;
+	arquivo=fopen("energy.txt", "r");
+
+	fseek(arquivo, SEEK_SET, 0);
 	
+	while(i!=j){
+		
+		fscanf(arquivo, "%[^\n]s", temp->nome);
+		j++;
+	}
+		
+	fscanf(arquivo, "%[^;]s", temp->nome);
+	temp->num=i;
 }
 
-void lert(){
+void lert(TRAINER *temp, int i){
 
+	int j=1;
+
+	FILE *arquivo;
+	arquivo=fopen("trainer.txt", "r");
+
+	fseek(arquivo, SEEK_SET, 0);
 	
+	while(i!=j){
+		
+		fscanf(arquivo, "%[^\n]s", temp->nome);
+		j++;
+	}
+		
+	fscanf(arquivo, "%[^;]s", temp->nome);
+	temp->num=i;
 }
 
 void criar(){
