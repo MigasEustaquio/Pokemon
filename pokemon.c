@@ -60,10 +60,10 @@ void iniciar(){
 	for(i=0;i<151;i++)
 		add(i);
 
-	for(i=0;i<m;i++)
+	for(i=0;i<9;i++)
 		adde(i);
 
-	for(i=0;i<n;i++)
+	for(i=0;i<52;i++)
 		addt(i);
 
 	temp=lista;
