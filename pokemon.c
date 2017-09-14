@@ -79,7 +79,7 @@ void del(){
 	while (no != NULL)
 	{
         	aux = no;
-	        no = no->proximo;
+	        no = no->prox;
         	free (aux);
     	}
 
@@ -87,7 +87,7 @@ void del(){
     	while (noe != NULL)
     	{
         	auxe = noe;
-	        noe = noe->proximo;
+	        noe = noe->prox;
         	free (auxe);
     	}
 
@@ -95,7 +95,7 @@ void del(){
     	while (not != NULL)
     	{
         	auxt = not;
-	        not = not->proximo;
+	        not = not->prox;
         	free (auxt);
     	}
 }
