@@ -1,9 +1,0 @@
-Fighting energy;
-Fire energy;
-Grass energy;
-Lighting energy;
-Psychic energy;
-Water energy;
-Dark energy;
-Metal energy;
-Doeble Normal energy;
