@@ -1,6 +1,12 @@
 # Pokemon
 Codigo fonte: pokemon.c
 
+Atuais problemas a serem resolvidos: Problemas.txt
+
+Biblioteca com funcoes relacionadas a arquivo: arq.h
+
+Biblioteca com funcoes relacionadas a struct: struct.h
+
 Ordenacao de cards de energia: energy list
 
 Efeitos gerais de ataques: pokemon effects
