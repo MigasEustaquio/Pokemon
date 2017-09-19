@@ -1,0 +1,7 @@
+.trainer 1;
+.trainer 2;
+.trainer 3;
+.trainer 4;
+.trainer 5;
+.trainer 6;
+.trainer 7;
