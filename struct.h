@@ -24,6 +24,6 @@ typedef struct trainer{
 
 typedef struct mesa{
 
-	CARD *ativo, *banco1, *banco2, *banco3, *banco4;
+	CARD *ativo, *banco[4];
 
 }MESA;
