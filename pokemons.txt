@@ -7,3 +7,5 @@
 .;;;;;;;;;;;;;;;;
 .;;;;;;;;;;;;;;;;
 .;;;;;;;;;;;;;;;;
+
+.-NOME-;-TIPO-;-WEAK-;-RESIS-;-NUM-;-HP-;-COST-;-ATK1-;-ATK2-;-DMG1-;-DMG2-;-EFFEC1-;-EFFECT2-;-NIVEL-;-EVOLUCAO-;-POWER-;
