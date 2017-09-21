@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "struct.h"
 #include "arq.h"
+#include "atk.h"
 
 void del();
 void preiniciar(MESA *mesa);
@@ -15,8 +16,7 @@ void teste(CARD *temp);
 void mesa();
 void teste2(MESA *mesa);
 void imprimirMesa(MESA *mesa);
-
-int cont=0;
+void atk(MESA *mesa1, MESA *mesa2);
 
 void main(){
 
@@ -27,7 +27,7 @@ void preiniciar(MESA *mesa){
 
 	int tipo, num;
 
-	printf("\n\tADICIONAR CARD\n");
+	printf("\n-----------------------------------------------------------------------------------\n\tADICIONAR CARD\n");
 
 	printf("\nQual o tipo de carta deseja criar?\n\t1-Pokemon(disponivel ate '3')\n\t2-Energia(disponivel ate '9')\n\t3-Treinador(disponivel ate '7')\n");
 	scanf("%d", &tipo);
@@ -49,7 +49,7 @@ void preiniciar(MESA *mesa){
 		break;
 	}
 
-	printf("\nCARD ADICIONADO COM SUCESSO\n");
+	printf("\nCARD ADICIONADO COM SUCESSO\n\n\n");
 }
 
 void iniciar(MESA *mesa, int tipo, int num){
@@ -57,15 +57,15 @@ void iniciar(MESA *mesa, int tipo, int num){
 	CARD *temp = (CARD *) malloc(sizeof(CARD));
 	ler(temp, num);
 
-	if(cont==0){
+	if(mesa->cont==0){
 
 		mesa->ativo=temp;
-		cont++;
+		mesa->cont++;
 	}
 	else{
 
-		mesa->banco[cont-1]=temp;
-		cont++;
+		mesa->banco[mesa->cont-1]=temp;
+		mesa->cont++;
 	}
 }
 
@@ -107,23 +107,46 @@ void iniciart(MESA *mesa, int tipo, int num){
 
 void mesa(){
 	
-	int i=0, j=0;
+	int i=0, j=0, k=0;
 
-	MESA *mesa = (MESA *) malloc(sizeof(MESA));
+	MESA *mesa1 = (MESA *) malloc(sizeof(MESA));
+	MESA *mesa2 = (MESA *) malloc(sizeof(MESA));
+	
+	mesa1->cont=0;
+	mesa2->cont=0;
 
 	while(j==0){
 
-		printf("\nO que deseja fazer?\n1-Adicionar card a mesa\n2-???????????????\n3-???????????????\n4-???????????????\n5-???????????????\n6-???????????????\n7-???????????????\n8-???????????????\n9-Mostrar mesa(Apenas cards de pokemon)\n0-Encerrar\n");
+		printf("\n-----------------------------------------------------------------------------------\nO que deseja fazer?\n1-Adicionar card a mesa\n2-Atacar\n3-???????????????\n4-???????????????\n5-???????????????\n6-???????????????\n7-???????????????\n8-???????????????\n9-Mostrar mesa(Apenas cards de pokemon)\n0-Encerrar\n");
 		scanf("%d", &i);
+		
+		if(i!=0){
+			printf("\nQual mesa deseja usar?\n");
+			scanf("%d", &k);
+		}
 	
 		switch(i){
 
 			case 1:
-				preiniciar(mesa);
+				if(k==1)
+					preiniciar(mesa1);
+				else
+					preiniciar(mesa2);
 				break;
+				
+			case 2:
+				if(k==1)
+					atk(mesa1, mesa2);
+				else
+					atk(mesa2, mesa1);
+				
 			case 9:
-				imprimirMesa(mesa);
+				if(k==1)
+					imprimirMesa(mesa1);
+				else
+					imprimirMesa(mesa2);
 				break;
+				
 			case 0:
 				j=1;
 				printf("\n\tPrograma Encerrado\n");
@@ -135,7 +158,7 @@ void mesa(){
 
 void imprimirMesa(MESA *mesa){
 
-	printf("\n\tIMPRIMIR MESA\n\n");
+	printf("\n-----------------------------------------------------------------------------------\n\tIMPRIMIR MESA\n\n");
 
 	if(mesa->ativo==NULL){
 
@@ -172,7 +195,29 @@ void imprimirMesa(MESA *mesa){
 			}
 		}
 	}
+	printf("\n\n");
 }
+
+void atk(MESA *mesa1, MESA *mesa2){
+
+	int i=0, temp;
+
+	printf("\n-----------------------------------------------------------------------------------\n\tATACAR\n\n");
+
+	teste(mesa1->ativo);
+	printf("\nQual ataque deseja utilizar?\n");
+	scanf("%d", &i);
+	
+	temp=mesa2->ativo->hp;
+	
+	if(i==1)
+		mesa2->ativo->hp = mesa2->ativo->hp - mesa1->ativo->dmg1;
+	if(i==2)
+		mesa2->ativo->hp = mesa2->ativo->hp - mesa1->ativo->dmg2;
+
+	printf("\nDANO CAUSADO: %i\n\n\n", temp-mesa2->ativo->hp);
+}
+
 
 void teste(CARD *temp){
 
