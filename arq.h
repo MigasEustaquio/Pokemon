@@ -1,4 +1,8 @@
+char auxstr[10];
+
 void ler(CARD *temp, int i){
+
+	temp->energy=0;
 
 	int j;
 	char x[100], y[3];
@@ -79,10 +83,10 @@ void ler(CARD *temp, int i){
 	fclose(arquivo);
 }
 
-void lere(ENERGY *tempe, int i){
+void lere(int i){
 
 	int j=1;
-	char x[20];
+	char x[10];
 
 	FILE *arquivo;
 	arquivo=fopen("energy.txt", "r");
@@ -96,8 +100,8 @@ void lere(ENERGY *tempe, int i){
 		fseek(arquivo, 1, 1);
 	}
 		
-	fscanf(arquivo, "%[^;]s", tempe->nome);
-	tempe->num=i;
+	fscanf(arquivo, "%[^;]s", auxstr);
+//	tempe->num=i;
 
 	fclose(arquivo);
 }
