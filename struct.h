@@ -1,6 +1,6 @@
 typedef struct card{
 
-	int num, hp, cost;
+	int num, hp, cost, energy;
 	int atk1, atk2, dmg1, dmg2;
 	int effect1, effect2;
 	int nivel, evolucao, power;
