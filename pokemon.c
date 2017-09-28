@@ -17,8 +17,6 @@ void teste(CARD *temp);
 void mesa();
 void teste2(MESA *mesa);
 void imprimirMesa(MESA *mesa, int k);
-void atk(MESA *mesa1, MESA *mesa2);
-void substituir(MESA *mesa, int x);
 
 char auxstr[10];
 
@@ -40,6 +38,9 @@ void preiniciar(MESA *mesa){
 		printf("\nOPERACAO CANCELADA\n\n");
 		return;
 	}
+
+	if(tipo==2)
+		printf("\n\n\t1-FIGHT\n\t2-FIRE\n\t3-GRASS\n\t4-LIGHT\n\t5-PSICH\n\t6-WATER\n\t7-DARK\n\t8-METAL\n\t9-DOEBLE\n");
 
 	printf("\nQual o numero da carta?\n");
 	scanf("%d", &num);
