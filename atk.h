@@ -1,10 +1,11 @@
 void teste(CARD *temp);
 void substituir(MESA *mesa, int x);
 void imprimirMesa(MESA *mesa, int k);
+int energ(CARD *card, int j);
 
 void atk(MESA *mesa1, MESA *mesa2){
 
-	int i=0, temp, dano;
+	int i=0, temp, dano, flag=1;
 
 	printf("\n-----------------------------------------------------------------------------------\n\tATACAR\n\n");
 
@@ -28,6 +29,15 @@ void atk(MESA *mesa1, MESA *mesa2){
 	
 	if(i==1){
 
+		flag=energ(mesa1->ativo, 1);
+
+		if(flag==0){
+			printf("\nO Pokemon nao possui cards de energia suficiente para realizar este ataque.\n\n");
+
+		atk(mesa1, mesa2);
+		return;
+		}
+
 		dano=mesa1->ativo->dmg1;
 
 		if(mesa2->ativo->resis==mesa1->ativo->tipo){
@@ -47,7 +57,22 @@ void atk(MESA *mesa1, MESA *mesa2){
 
 	if(i==2){
 
-		dano=mesa2->ativo->dmg1;
+		if(mesa1->ativo->atk2==0){
+			printf("\nO Pokemon nao possui segundo ataque.\n\n");
+			atk(mesa1, mesa2);
+			return;
+		}
+
+		flag=energ(mesa1->ativo, 2);
+
+		if(flag==0){
+			printf("\nO Pokemon nao possui cards de energia suficiente para realizar este ataque.\n\n");
+
+		atk(mesa1, mesa2);
+		return;
+		}
+
+		dano=mesa2->ativo->dmg2;
 
 		if(mesa1->ativo->resis==mesa2->ativo->tipo){
 
@@ -169,4 +194,29 @@ void substituir(MESA *mesa, int x){
 			return;
 			break;
 	}
+}
+
+int energ(CARD *card, int j){
+
+	int atk, atk1, atk2, energy, energy1, energy2;
+
+	if(j==1)
+		atk=card->atk1;
+	if(j==2)
+		atk=card->atk2;
+
+	energy=card->energy;
+
+	energy1=energy/10;
+	energy2=energy%10;
+
+	atk1=atk/10;
+	atk2=atk%10;
+
+	if(energy1<atk1)
+		return 0;
+	if(energy2+energy1-atk1<atk2)
+		return 0;
+
+	return 1;
 }
