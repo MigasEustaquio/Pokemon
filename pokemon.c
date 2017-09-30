@@ -197,7 +197,7 @@ void iniciart(MESA *mesa, int tipo, int num){
 
 void mesa(){
 	
-	int i=0, j=0, k=0;
+	int i=0, j=0, k=0, z=0;
 
 	MESA *mesa1 = (MESA *) malloc(sizeof(MESA));
 	MESA *mesa2 = (MESA *) malloc(sizeof(MESA));
@@ -212,15 +212,14 @@ void mesa(){
 		printf("\n-----------------------------------------------------------------------------------\nO que deseja fazer?\n1-Adicionar card a mesa\n2-Atacar\n3-Substituir\n4-???????????????\n5-???????????????\n6-???????????????\n7-???????????????\n8-???????????????\n9-Mostrar mesa(Apenas cards de pokemon)\n0-Encerrar\n");
 		scanf("%d", &i);
 
-		do{	
-			if(i!=0){
+		if(i!=0)
+			do{	
 				printf("\nQual mesa deseja usar?(1 ou 2)\n");
 				scanf("%d", &k);
-			}
 
-			if(k!=1 && k!=2)
-				printf("\nPor favor insira 1 ou 2.\n\n");
-		}while(k!=1 && k!=2);
+				if(k!=1 && k!=2)
+					printf("\nPor favor insira 1 ou 2.\n\n");
+			}while(k!=1 && k!=2);
 
 		switch(i){
 
@@ -253,8 +252,12 @@ void mesa(){
 				break;
 				
 			case 0:
-				j=1;
-				printf("\n\tPrograma Encerrado\n");
+				printf("\nTem certeza que deseja encerrar?(1-SIM/2-NAO)\n\n");
+				scanf("%d", &z);
+				if(z==1){
+					printf("\n\tPrograma Encerrado\n");
+					j=1;
+				}
 				break;
 
 		}
