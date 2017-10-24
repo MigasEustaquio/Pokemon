@@ -17,6 +17,7 @@ void teste(CARD *temp);
 void mesa();
 void teste2(MESA *mesa);
 void imprimirMesa(MESA *mesa, int k);
+int evolve(MESA *mesa, CARD *temp);
 
 char auxstr[10];
 
@@ -31,7 +32,7 @@ void preiniciar(MESA *mesa){
 
 	printf("\n-----------------------------------------------------------------------------------\n\tADICIONAR CARD\n");
 
-	printf("\nQual o tipo de carta deseja criar?\n\t1-Pokemon(disponivel ate '3')\n\t2-Energia(disponivel ate '9')\n\t3-Treinador(disponivel ate '7')\n\t0-Retornar\n");
+	printf("\nQual o tipo de carta deseja criar?\n\t1-Pokemon(disponivel ate '49')\n\t2-Energia(disponivel ate '9')\n\t3-Treinador(disponivel ate '7')\n\t0-Retornar\n");
 	scanf("%d", &tipo);
 
 	if(tipo==0){
@@ -42,12 +43,18 @@ void preiniciar(MESA *mesa){
 	if(tipo==2)
 		printf("\n\n\t1-FIGHT\n\t2-FIRE\n\t3-GRASS\n\t4-LIGHT\n\t5-PSICH\n\t6-WATER\n\t7-DARK\n\t8-METAL\n\t9-DOEBLE\n");
 
-	printf("\nQual o numero da carta?\n");
-	scanf("%d", &num);
+	if(mesa->cont!=5){
+		printf("\nQual o numero da carta?\n");
+		scanf("%d", &num);
+	}
 
 	switch(tipo){	
 
 	case 1:
+		if(mesa->cont==5){
+			printf("\nSua mesa ja possui o maximo de pokemons.\n\nOPERACAO CANCELADA\n\n");
+			return;
+		}
 		x=iniciar(mesa, tipo, num);
 		if(x==0){
 			printf("\nOPERACAO CANCELADA\n\n");
@@ -81,7 +88,7 @@ void preiniciar(MESA *mesa){
 
 int iniciar(MESA *mesa, int tipo, int num){
 
-	int i=0;
+	int i=0, x, y=0;
 
 	CARD *temp = (CARD *) malloc(sizeof(CARD));
 	ler(temp, num);
@@ -96,26 +103,38 @@ int iniciar(MESA *mesa, int tipo, int num){
 		if(i!=1 && i!=2)
 			printf("\nPor favor insira 1 ou 2.\n\n");
 	}while(i!=1 && i!=2);
-	
+
+	if(temp->nivel!=0){
+
+		y=1;
+
+		x=evolve(mesa, temp);
+
+		if(x==0)
+			return 0;
+	}
+
 	if(i==2)
 		return 0;
 
 	if(mesa->cont==0){
 
-		mesa->ativo=temp;
-		mesa->cont++;
+		if(y!=1){
+			mesa->ativo=temp;
+			mesa->cont++;
+		}
 	}
 	else{
 
-		mesa->banco[mesa->cont-1]=temp;
-		mesa->cont++;
+		if(y!=1){
+			mesa->banco[mesa->cont-1]=temp;
+			mesa->cont++;
+		}
 	}
 	return 1;
 }
 
 int iniciare(MESA *mesa, int num){
-
-//	ENERGY *tempe = (ENERGY *) malloc(sizeof(ENERGY));
 
 	int i=0, j, energy;
 
@@ -158,6 +177,9 @@ int iniciare(MESA *mesa, int num){
 		else
 			energy=1;
 
+	if(num==9)
+		energy++;
+
 	if(j==0)
 		mesa->ativo->energy = mesa->ativo->energy + energy;
 	else
@@ -171,30 +193,6 @@ void iniciart(MESA *mesa, int tipo, int num){
 	lert(tempt, num);
 }
 
-/*void del(){
-	CARD *no = lista, *aux;
-	while (no != NULL)
-	{
-        	aux = no;
-	        no = no->prox;
-        	free (aux);
-    	}
-	ENERGY *noe = listae, *auxe;
-    	while (noe != NULL)
-    	{
-        	auxe = noe;
-	        noe = noe->prox;
-        	free (auxe);
-    	}
-	TRAINER *not = listat, *auxt;
-    	while (not != NULL)
-    	{
-        	auxt = not;
-	        not = not->prox;
-        	free (auxt);
-    	}
-}*/
-
 void mesa(){
 	
 	int i=0, j=0, k=0, z=0;
@@ -204,6 +202,14 @@ void mesa(){
 	
 	mesa1->cont=0;
 	mesa2->cont=0;
+
+	mesa1->ativo=NULL;
+	mesa2->ativo=NULL;
+
+	for(i=0;i<4;i++){
+		mesa1->banco[i]=NULL;
+		mesa2->banco[i]=NULL;
+	}
 
 	while(j==0){
 
@@ -262,6 +268,56 @@ void mesa(){
 
 		}
 	}
+}
+
+int evolve(MESA *mesa, CARD *temp){
+
+	int num, energy=0;
+
+	CARD *nome = (CARD *) malloc(sizeof(CARD));
+
+	ler(nome, temp->evolucao);
+
+	if(mesa->ativo==NULL){
+		printf("Nenhum pokemon na mesa.\n\n");
+		return 0;
+	}
+
+	imprimirMesa(mesa, 2);
+
+	printf("Esse pokemon nao e basico.\nSelecione o pokemon de estagio anterior ao desejado em sua mesa (0 para o pokemon ativo)--(%s)", nome->nome);	scanf("%d", &num);
+
+	if(num==0){
+		if(mesa->ativo->num==nome->num){
+			energy=mesa->ativo->energy;
+			mesa->ativo=temp;
+			mesa->ativo->energy=energy;
+		}
+		else{
+
+			printf("\nO pokemon selecionado nao e o correto. Operacao cancelada.\n\n");
+			return 0;
+		}
+	}
+	else{
+
+		if(mesa->banco[num-1]==NULL){
+			printf("Essa mesa nao possui um pokemon nessa posicao.\n\n");
+			return 0;
+		}
+		if(mesa->banco[num-1]->num==nome->num){
+			energy=mesa->banco[num-1]->energy;
+			mesa->banco[num-1]=temp;
+			mesa->banco[num-1]->energy=energy;
+		}
+		else{
+
+			printf("\nO pokemon selecionado nao e o correto. Operacao cancelada.\n\n");
+			return 0;
+		}
+	}
+
+	return 1;
 }
 
 void imprimirMesa(MESA *mesa, int k){
