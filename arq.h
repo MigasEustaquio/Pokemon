@@ -101,7 +101,6 @@ void lere(int i){
 	}
 		
 	fscanf(arquivo, "%[^;]s", auxstr);
-//	tempe->num=i;
 
 	fclose(arquivo);
 }
