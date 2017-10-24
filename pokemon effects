@@ -9,7 +9,7 @@ EFFECTS:
 
 5-Jogue uma moeda. Se der cara o pokemon defensor esta paralisado
 
-6-Jogue uma moeda. Se der cara o pokemon atacante nao pode sofrer nenhum dano durante o turno de seu adversario (Qualquer efeito secundario ainda ocorrerao).
+6-Jogue uma moeda. Se der cara o pokemon atacante nao pode sofrer nenhum dano durante o turno de seu adversario (Quaisquer efeitos secundarios ainda ocorrerao).
 
 7-Causa 10 de dano extra para cada card de energia do tipo do pokemon atacante ligado a ele (Com excessao dos cards utilizados para utilizar o ataque) (maximo de 20 de dano extra).
 
@@ -63,21 +63,40 @@ EFFECTS:
 
 32-Caso seu oponente tenha algum pokemon no banco escolha um e substitua o pokemon defensor por ele.
 
-33-Cauda dano igual a metade da vida restante do pokemon defensor (arredondado para cima).
+33-Causa dano igual a metade da vida restante do pokemon defensor (arredondado para cima).
 
-34-
+34-Se o seu adversario possuir ao menos um Pokemon no banco jogue uma moeda. Se der cara seu oponente escolhe um de seus pokemons no banco e substitui pelo pokemon ativo. (Causa o dano antes desse efeito)
 
-35-
+35-O pokemon defensor esta dormindo.
 
-36-
+36-Causa 10 de dano extra para cada pokemon no seu banco.
 
-37-
+37-Este ataque cura o pokemon atacante na mesma quantidade de dano causado (depois de aplicar fraqueza e resistencia).
 
-38-
+38-Procure no seu deck por uma carta de Oddish e coloque no seu banco, embaralhe seu baralho depois disso (esse ataque nao pode ser usado se seu banco estiver cheio).
 
-39-
+39-Tanto o pokemon defensor quanto o atacante estao confusos.
 
-40-
+40-Jogue 3 moedas. Este ataque causa dano igual a 40x o numero de vezes que a moeda der cara. O pokemon atacante agora esta confuso.
 
+41-Jogue uma moeda. Se der cara o pokemon defensor esta confuso e envenenado.
+
+42-
+
+43-
+
+44-
+
+45-
+
+46-
+
+47-
+
+48-
+
+49-
+
+50-
 
 
