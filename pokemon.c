@@ -104,6 +104,11 @@ int iniciar(MESA *mesa, int tipo, int num){
 			printf("\nPor favor insira 1 ou 2.\n\n");
 	}while(i!=1 && i!=2);
 
+	if(i==2)
+		return 0;
+
+	temp->status=0;
+
 	if(temp->nivel!=0){
 
 		y=1;
@@ -113,9 +118,6 @@ int iniciar(MESA *mesa, int tipo, int num){
 		if(x==0)
 			return 0;
 	}
-
-	if(i==2)
-		return 0;
 
 	if(mesa->cont==0){
 
@@ -374,7 +376,7 @@ void imprimirMesa(MESA *mesa, int k){
 
 void teste(CARD *temp){
 
-	printf("NOME: %s\nTIPO: %s\nENERGY: %d\nWEAK: %s\nRESIS: %s\nNUM: %d\nHP: %d\nCOST: %d\nATK1: %d\nATK2: %d\nDMG1: %d\nDMG2: %d\nEFFECT1: %d\nEFFECT2: %d\nNIVEL: %d\nEVOLUCAO: %d\nPOWER: %d\n\n", temp->nome, temp->tipo, temp->energy, temp->weak, temp->resis, temp->num, temp->hp, temp->cost, temp->atk1, temp->atk2, temp->dmg1, temp->dmg2, temp->effect1, temp->effect2, temp->nivel, temp->evolucao, temp->power);
+	printf("NOME: %s\nTIPO: %s\nENERGY: %d\nStatus: %d\nWEAK: %s\nRESIS: %s\nNUM: %d\nHP: %d\nCOST: %d\nATK1: %d\nATK2: %d\nDMG1: %d\nDMG2: %d\nEFFECT1: %d\nEFFECT2: %d\nNIVEL: %d\nEVOLUCAO: %d\nPOWER: %d\n\n", temp->nome, temp->tipo, temp->energy, temp->status, temp->weak, temp->resis, temp->num, temp->hp, temp->cost, temp->atk1, temp->atk2, temp->dmg1, temp->dmg2, temp->effect1, temp->effect2, temp->nivel, temp->evolucao, temp->power);
 }
 
 void teste2(MESA *mesa){
