@@ -4,6 +4,7 @@
 #include "struct.h"
 #include "arq.h"
 #include "atk.h"
+#include "effects.h"
 
 void del();
 void preiniciar(MESA *mesa);
