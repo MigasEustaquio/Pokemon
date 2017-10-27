@@ -33,7 +33,7 @@ void preiniciar(MESA *mesa){
 
 	printf("\n-----------------------------------------------------------------------------------\n\tADICIONAR CARD\n");
 
-	printf("\nQual o tipo de carta deseja criar?\n\t1-Pokemon(disponivel ate '49')\n\t2-Energia(disponivel ate '9')\n\t3-Treinador(disponivel ate '7')\n\t0-Retornar\n");
+	printf("\nQual o tipo de carta deseja criar?\n\t1-Pokemon(disponivel ate '68')\n\t2-Energia(disponivel ate '9')\n\t3-Treinador(disponivel ate '7')\n\t0-Retornar\n");
 	scanf("%d", &tipo);
 
 	if(tipo==0){
